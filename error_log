@@ -1,0 +1,8 @@
+[12-Nov-2015 02:31:22 America/Denver] PHP Parse error:  syntax error, unexpected '{' in /home3/softweba/public_html/network_plus/module/controllers/before.php on line 13
+[20-Nov-2015 00:37:03 America/Denver] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home3/softweba/public_html/network_plus/module/controllers/calendar.php on line 81
+[20-Nov-2015 00:37:14 America/Denver] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home3/softweba/public_html/network_plus/module/controllers/calendar.php on line 81
+[27-Nov-2015 11:50:22 Asia/Manila] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home3/softweba/public_html/network_plus/module/views/activity.php on line 153
+[27-Nov-2015 11:50:36 Asia/Manila] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home3/softweba/public_html/network_plus/module/views/activity.php on line 153
+[27-Nov-2015 11:51:19 Asia/Manila] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home3/softweba/public_html/network_plus/module/views/activity.php on line 154
+[27-Nov-2015 11:51:30 Asia/Manila] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home3/softweba/public_html/network_plus/module/views/activity.php on line 154
+[01-Dec-2015 15:22:35 Asia/Manila] PHP Fatal error:  Call to a member function userdata() on a non-object in /home3/softweba/public_html/network_plus/module/views/header.php on line 64

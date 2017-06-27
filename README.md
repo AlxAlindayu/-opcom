@@ -1,3 +1,3 @@
 # -opcom
 This is for riding community 
-You can use file in development to help me 
+if you want to help me please contact me @newlifebunolife - facebook account

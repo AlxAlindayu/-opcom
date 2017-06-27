@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Open Sans');
+/* button hover customize */
+.form-error { color: #a94442; padding: 5px 0 0 0; letter-spacing: 1.5px; }
+.success{padding:5px 10px;border:1px solid #E0F1E9;background:#F1F9F7 none repeat scroll 0% 0%;letter-spacing:1.1px;color: #1D9D74;}
+.error{padding:5px 10px;border:1px solid #E0F1E9;background:rgba(169,68,66,0.8) none repeat scroll 0% 0%;letter-spacing:1.1px;color: #fff;text-transform: capitalize;}
+.rg-login-box{font-family: 'Open Sans';border-color: #ccc;-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);margin-top:50%;margin-bottom: 50%;}
+.rg-panel-body{padding: 30px !important;}
+.rg-login-title{font-size: 20px;}
+.rg-login-button{width: 100%;}
+.rg-login-panel>.panel-heading{background: #DD6600 !important;border-color: #fff !important;}
+.rg-login-panel{border-color: #fff !important;}
+.rg-hvr:hover, .rg-hvr:focus, .rg-hvr:active{background-color: #DD6600 !important;border-color: #DD6600 !important;}
+a:hover, a:active, a:focus{text-decoration: none !important;}
+.rg-error{padding:5px 10px;background:#a94442 none repeat scroll 0% 0%;letter-spacing:1.1px;color: #fff;margin:10px auto;}
