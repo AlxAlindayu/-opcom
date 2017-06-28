@@ -28,9 +28,9 @@ class Registration extends CI_Controller
 			{
 				$i = 0;
 				$error = 0;
-				$array = array('Vest #','Batch','Firstname','Lastname','Middlename','Birthday','Street Address','City','Contact Number','Name','Number','Address','Relation','Aspirant #');
-				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant');
-				$array_req = array(0,1,1,1,0,0,1,1,1,1,1,1,1,0);
+				$array = array('Vest #','Batch','Firstname','Lastname','Middlename','Birthday','Street Address','City','Contact Number','Name','Number','Address','Relation','Aspirant #','Sector','Blood Type');
+				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','sector','bloodtype');
+				$array_req = array(0,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1);
 			
 				foreach($array_var as $a) {
 					$data[$a] = $this->input->post($a);
@@ -72,9 +72,11 @@ class Registration extends CI_Controller
 						'lastname' => $this->input->post('lastname'),
 						'middlename' => $this->input->post('middlename'),
 						'birthday' => date('Y-m-d',strtotime($this->input->post('birthday'))),
+						'bloodtype' => $this->input->post('bloodtype'),
 						'st_address' => $this->input->post('st_address'),
 						'contact_numberinf' => $this->input->post('contact_numberinf'),
 						'city' => $this->input->post('city'),
+						'sector' => $this->input->post('sector'),
 						'usertype' => $this->input->get('add'),
 						'date_added' => date('Y-m-d H:i:s')
 
@@ -109,7 +111,7 @@ class Registration extends CI_Controller
 			$cquery = QModel::c($query);
 			if($cquery){
 				$get = QModel::g($this->wmodel->getInformation($this->input->get('who')));
-				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','usertype');
+				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','usertype','sector','bloodtype');
 				foreach ($array_var as $a){
 					$data[$a] = $get[$a];
 				}
@@ -118,9 +120,9 @@ class Registration extends CI_Controller
 
 					$i = 0;
 					$error = 0;
-					$array = array('Vest #','Batch','Firstname','Lastname','Middlename','Birthday','Street Address','City','Contact Number','Name','Number','Address','Relation','Aspirant #','Member Type');
-					$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','usertype');
-					$array_req = array(0,1,1,1,0,0,1,1,1,1,1,1,1,0,1);
+					$array = array('Vest #','Batch','Firstname','Lastname','Middlename','Birthday','Street Address','City','Contact Number','Name','Number','Address','Relation','Aspirant #','Member Type','Sector','Blood Type');
+					$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','usertype','sector','bloodtype');
+					$array_req = array(0,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1);
 				
 					foreach($array_var as $a) {
 						$data[$a] = $this->input->post($a);
@@ -149,9 +151,11 @@ class Registration extends CI_Controller
 							'lastname' => $this->input->post('lastname'),
 							'middlename' => $this->input->post('middlename'),
 							'birthday' => date('Y-m-d',strtotime($this->input->post('birthday'))),
+							'bloodtype' => $this->input->post('bloodtype'),
 							'st_address' => $this->input->post('st_address'),
 							'contact_numberinf' => $this->input->post('contact_numberinf'),
 							'city' => $this->input->post('city'),
+							'sector' => $this->input->post('sector'),
 							'usertype' => $this->input->post('usertype'),
 							'date_added' => date('Y-m-d H:i:s')
 
