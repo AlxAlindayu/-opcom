@@ -188,6 +188,14 @@ class Registration extends CI_Controller
 				show_404();
 			}
 		}
+		elseif($this->input->get('add') == 'user'){
+			$data['submenu'] = 'Add User';
+			$data['page'] = 'rg';
+
+			if($_POST){
+				
+			}
+		}
 		else
 		{
 			$data['page'] = 'list';
