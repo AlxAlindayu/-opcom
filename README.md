@@ -7,3 +7,5 @@ June 29, 2017 (Updates) - Alex Alindayu <br />
 *Login / Logout Activation<br />
 *Transaction Logs<br />
 *Motorcycle Information(Not yet done)<br />
+*Search Engine in RG's
+
