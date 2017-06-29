@@ -27,6 +27,7 @@
 	<?php echo link_tag('themes/default/css/ionicons.min.css'); ?>
 	<?php echo link_tag('themes/default/css/bootstrap.min.css'); ?>
 	<?php echo link_tag('themes/default/css/hover.css'); ?>
+	<?php echo link_tag('themes/default/css/select2.min.css'); ?>
 	<?php echo link_tag('themes/default/css/daterangepicker.css'); ?>
 	
 	<?php echo link_tag('themes/default/css/font-awesome.min.css'); ?>
@@ -292,7 +293,7 @@
 										<a href="javascript:void(0);" class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a href="javascript:void(0);" class="btn btn-default btn-flat">Sign out</a>
+										<a href="<?php echo base_url('admin/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
 									</div>
 								</li>
 							</ul>

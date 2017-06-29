@@ -12,7 +12,7 @@
 				<!-- Main row -->
 				<div class="row">
 					<!-- Left col -->
-					<section class="col-lg-6 connectedSortable">
+					<section class="col-lg-12 connectedSortable">
 						<div class="box box-primary box-solid">
 							<div class="box-header  with-border">
 								<h3 class="box-title">RG List</h3>
@@ -27,6 +27,8 @@
 											<th>Vest #</th>
 											<th>Name</th>
 											<th>Batch</th>
+											<th>Contact #</th>
+											<td>Emergency Contact</td>
 											<?php #if($this->session->userdata('count') == 1): ?>
 												<th></th>
 											<?php #endif; ?>
@@ -50,11 +52,22 @@
 													$fullname = $g['lastname'].' , '.$g['firstname'].' '.$g['middlename'];
 													$batch = 'Batch '.$g['batch'];
 													$unique_id = $g['unique_id'];
+													$contact_numberinf = $g['contact_numberinf'];
+
+													$eq = QModel::sfwa('emergency_info','unique_id',$unique_id);
+													
+													if(QModel::c($eq)) {
+														$eg = QModel::g($eq);
+														$contact_name = $eg['contact_name'];
+														$contact_number = $eg['contact_number'];
+													}
 										?>
 										<tr>
 											<td><?php echo $vest_no; ?></td>
 											<td><?php echo $fullname; ?></td>
 											<td><?php echo $batch; ?></td>
+											<td><?php echo $contact_numberinf; ?></td>
+											<td><?php echo $contact_name.' / '.$contact_number; ?></td>
 											<?php #if($this->session->userdata('count') == 1): ?>
 												<td>
 													<a href="<?php echo base_url('admin/registration?modify=yes&who='.$unique_id); ?>"><i class="fa fa-pencil-square fa-lg" aria-hidden="true" ></i> Edit</a>
@@ -69,9 +82,6 @@
 								</table>
 							</div>
 						</div>
-					</section>
-					<section class="col-lg-6 connectedSortable">
-						
 					</section>
 				</div>
 			</section>
