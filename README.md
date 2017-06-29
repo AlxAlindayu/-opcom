@@ -2,7 +2,7 @@
 This is for riding community 
 if you want to help me please contact me @newlifebunolife - facebook account
 
-June 29, 2017 (Updates) - Alex Alindayu <br />
+June 29, 2017 (Updates 1.3) - Alex Alindayu <br />
 *User Registration / Search<br />
 *Login / Logout Activation<br />
 *Transaction Logs<br />
