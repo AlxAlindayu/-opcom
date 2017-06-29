@@ -7,12 +7,14 @@ class Registration extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		if( ! $this->session->userdata('is_login')) 
+			show_404();
 	}
 	
 	public function index()
 	{
-		#if( ! $this->session->userdata('is_login')) 
-		#	show_404();
+		
 
 		$data["title"] = "Welcome to RG Admin - Login ";
 		$data['description'] = 'Welcome to RG Admin !';
@@ -28,9 +30,9 @@ class Registration extends CI_Controller
 			{
 				$i = 0;
 				$error = 0;
-				$array = array('Vest #','Batch','Firstname','Lastname','Middlename','Birthday','Street Address','City','Contact Number','Name','Number','Address','Relation','Aspirant #','Sector','Blood Type');
-				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','sector','bloodtype');
-				$array_req = array(0,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1);
+				$array = array('Vest #','Batch','Firstname','Lastname','Middlename','Birthday','Street Address','City','Contact Number','Name','Number','Address','Relation','Aspirant #','Sector','Blood Type','Owner Name','Owner Address','Plate No.','Engine No.','Chassis No.','Year Model','Manufacturer','Motorcycle Series(Type)');
+				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','sector','bloodtype','owners_name',' owner_address',' plate_no',' engine_no',' chassis_no',' year_model',' manufacturer',' series_type');
+				$array_req = array(0,1,1,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0);
 			
 				foreach($array_var as $a) {
 					$data[$a] = $this->input->post($a);
@@ -94,6 +96,18 @@ class Registration extends CI_Controller
 
 					$this->db->insert('emergency_info',$emergency);
 
+					logs_record($this->session->userdata('hashcrash'),'Register Vest No. : '.$this->input->post('vest_no').' Firstname : '.$this->input->post('firstname').' Lastname : '.$this->input->post('lastname'),date("Y-m-d H:i:s"));
+
+					/*$motorcycle = array(
+						'unique_id' => $unique_id,
+						'contact_name' => $this->input->post('contact_name'),
+						'contact_number' => $this->input->post('contact_number'),
+						'contact_address' => $this->input->post('contact_address'),
+						'relation' => $this->input->post('relation')
+					);
+
+					$this->db->insert('emergency_info',$emergency);
+					*/
 					$this->db->trans_complete();
 
 					$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> The new directory has been saved.</p>');
@@ -109,14 +123,14 @@ class Registration extends CI_Controller
 			$this->load->model('wmodel');
 			$query = QModel::sfwa('information','unique_id',$this->input->get('who'));
 			$cquery = QModel::c($query);
-			if($cquery){
+			if($cquery) {
 				$get = QModel::g($this->wmodel->getInformation($this->input->get('who')));
 				$array_var = array('vest_no','batch','firstname','lastname','middlename','birthday','st_address','city','contact_numberinf','contact_name','contact_number','contact_address','relation','aspirant','usertype','sector','bloodtype');
-				foreach ($array_var as $a){
+				foreach ($array_var as $a) {
 					$data[$a] = $get[$a];
 				}
 
-				if($_POST){
+				if($_POST) {
 
 					$i = 0;
 					$error = 0;
@@ -141,7 +155,7 @@ class Registration extends CI_Controller
 						$i++;
 					}
 
-					if( ! $error){
+					if( ! $error) {
 						$this->db->trans_start();
 						
 						$information = array(
@@ -173,6 +187,8 @@ class Registration extends CI_Controller
 						$this->db->update('information',$information);
 						$this->db->update('emergency_info',$emergency);
 
+						logs_record($this->session->userdata('hashcrash'),'Modify Vest No. : '.$this->input->post('vest_no').' With Unique ID :'.$this->input->get('who'),date("Y-m-d H:i:s"));
+
 						$this->db->trans_complete();
 
 						$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> New Information has been saved.</p>');
@@ -188,13 +204,74 @@ class Registration extends CI_Controller
 				show_404();
 			}
 		}
-		elseif($this->input->get('add') == 'user'){
+		elseif($this->input->get('add') == 'user') {
 			$data['submenu'] = 'Add User';
 			$data['page'] = 'rg';
 
-			if($_POST){
-				
+			if($_POST) {
+				$error = 0;
+				$i = 0;
+				$var = array('user','password','vpassword','usertype','userstatus');
+				$var_name = array('User','Password','Verify Password','User Type','User Status');
+				$var_req = array(1,1,1,1,1);
+
+				foreach ($var as $a) {
+					$data[$a] = $this->input->post($a);
+					if( ! strlen($this->input->post($a)) && $var_req[$i]) {
+						$data[$a.'_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> Please enter '.$array[$i].'.</div>';
+						$error++;
+					}
+					$i++;
+				}
+
+				if($this->input->post('password') != $this->input->post('vpassword')){
+					$data['password_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> Please verify your password.</div>';
+					$error++;
+				}
+
+				$uq = QModel::sfwa('user','unique_id',$this->input->post('user'));
+				if (QModel::c($uq)) {
+					$data['user_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> Already registered.</div>';
+					$error++;
+				}
+
+				if( ! $error) {
+					$dq = QModel::sfwa('information',array('usertype','unique_id'),array('rg',$this->input->post('user')));
+					$cq = QModel::c($dq);
+
+					if($cq){
+						$get = QModel::g($dq);
+
+						$insert = array(
+							'unique_id' => $this->input->post('user'),
+							'username' => $get['vest_no'],
+							'password' => hash_password($this->input->post('password')),
+							'usertype' => $this->input->post('usertype'),
+							'status' => $this->input->post('userstatus'),
+							'date_registered' => date("Y-m-d H:i:s")
+						);
+
+						$this->db->insert('user',$insert);
+
+						$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> User account has been created successfully.</p>');
+						$logs_message = 'User created unique_id : '.$this->input->post('unique_id').' Vest No. : '.$get['vest_no'].' with status :'.$this->input->post('status').' ';
+						logs_record($this->session->userdata('hashcrash',$logs_message,date("Y-m-d H:i:s"));
+						redirect('admin/registration?add=user');
+
+					}
+					else{
+						$data['usertype_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> User not found.</div>';
+					}
+					
+				}
+
+
 			}
+
+			$data['query'] = $query = QModel::sfwa('information','usertype','rg');
+			$data['cquery'] = QModel::c($query);
+
+			$this->load->view($this->folder.'user_registration',$data);
 		}
 		else
 		{

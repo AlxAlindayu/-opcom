@@ -126,7 +126,6 @@
 							</div>
 						</section>
 						<section class="col-lg-6 ">
-							
 							<div class="box box-danger">
 								<div class="box-header with-border">
 									<h3 class="box-title">Incase of Emergency Contact</h3>
@@ -154,6 +153,63 @@
 									</div>
 								</div>
 							</div>
+							<?php /*
+							<div class="box box-primary">
+								<div class="box-header with-border">
+									<h3 class="box-title">Motorcycle Info</h3>
+								</div>
+								<div class="box-body">
+									<div class="form-group <?php echo isset($owners_name_response) ? 'has-error' : ''; ?>">
+										<label for="contact_name">Owners Name</label>
+										<input type="text" class="form-control" id="contact_name" placeholder="" name="owners_name" value="<?php echo isset($owners_name_response) ? $owners_name_response : ''; ?>">
+										<span><?php echo isset($owners_name_response) ? $owners_name_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($owner_address_response) ? 'has-error' : ''; ?>">
+										<label for="contact_number">Owner Address</label>
+										<textarea class="form-control" rows="3" placeholder="" name="owner_address" style="resize:none;"><?php echo isset($owner_address) ? $owner_address : ''; ?></textarea>
+										<span><?php echo isset($owner_address_response) ? $owner_address_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($plate_no_response) ? 'has-error' : ''; ?>">
+										<label for="contact_address">Plate No.</label>
+										<input type="text" class="form-control" id="contact_address" placeholder="" name="plate_no" value="<?php echo isset($plate_no) ? $plate_no : ''; ?>">
+										<span><?php echo isset($plate_no_response) ? $plate_no_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($engine_no_response) ? 'has-error' : ''; ?>">
+										<label for="contact_address">Engine No.</label>
+										<input type="text" class="form-control" id="contact_address" placeholder="" name="engine_no" value="<?php echo isset($engine_no) ? $engine_no : ''; ?>">
+										<span><?php echo isset($engine_no_response) ? $engine_no_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($chassis_no_response) ? 'has-error' : ''; ?>">
+										<label for="contact_address">Chassis No.</label>
+										<input type="text" class="form-control" id="contact_address" placeholder="" name="chassis_no" value="<?php echo isset($chassis_no) ? $chassis_no : ''; ?>">
+										<span><?php echo isset($chassis_no_response) ? $chassis_no_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($year_model_response) ? 'has-error' : ''; ?>">
+										<label for="contact_address">Year model</label>
+										<input type="text" class="form-control" id="contact_address" placeholder="" name="year_model" value="<?php echo isset($chassis_no) ? $chassis_no : ''; ?>">
+										<span><?php echo isset($year_model_response) ? $year_model_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($manufacturer_response) ? 'has-error' : ''; ?>">
+										<label for="contact_address">Manufacturer</label>
+										<select class="form-control" name="manufacturer">
+											<option <?php echo (isset($manufacturer) ? $manufacturer == 'Others' : '') ? 'selected' : ''; ?> value="Others">Others</option>
+											<?php 
+												$value = array('Euro','KEEWAY','LuckyStar Motorcycles','Skygo','Motorstar','Rusi','SYM','Racal','Yamaha','Honda','Suzuki','Kawasaki','Kymco');
+												$lop = sort($value);
+													foreach ($value as $a):
+											?>
+												<option <?php echo (isset($manufacturer) ? $manufacturer == $a : '') ? 'selected' : ''; ?> value="<?php echo $a; ?>"><?php echo $a; ?></option>
+											<?php endforeach; ?>
+										</select>
+										<span><?php echo isset($manufacturer_response) ? $manufacturer_response : ''; ?></span>
+									</div>
+									<div class="form-group <?php echo isset($series_type_response) ? 'has-error' : ''; ?>">
+										<label for="contact_address">Motorcycle Type(Series)</label>
+										<input type="text" class="form-control" id="contact_address" placeholder="" name="series_type" value="<?php echo isset($series_type) ? $series_type : ''; ?>">
+										<span><?php echo isset($series_type_response) ? $series_type_response : ''; ?></span>
+									</div>
+								</div>
+							</div>*/ ?>
 						</section>
 					</form>
 				</div>

@@ -1,5 +1,29 @@
 <?php  if( !defined('BASEPATH')) exit('No direct script access allowed');
 /** 
+ * Saving Logs
+ *
+ * @author 		Alex Alindayu
+ * @copyright 	Copyright (c)2011 - 2017 CreationEyed
+ * @since 		CE Version 3.1
+ *
+ * @version 	3.1
+ *
+ */
+if ( ! function_exists('logs_record'))
+{
+	function logs_record($unique_id='',$message='',$date_record='')
+	{
+		$CI =& get_instance();
+		$insert = array(
+			'unique_id' => $unique_id,
+			'message' => $message,
+			'date_created' => $date_record,
+		);
+
+		$CI->db->insert('logs',$insert);
+	}
+}
+/** 
  * Link to theme path
  *
  * @author		Enalds

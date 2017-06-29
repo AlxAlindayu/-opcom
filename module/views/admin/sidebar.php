@@ -25,7 +25,7 @@
 			<ul class="sidebar-menu">
 				<li class="header">NAVIGATION</li>
 				<li class=" treeview <?php echo (isset($menu) ? $menu == 'dashboard' : '') ? 'active menu-open' : ''; ?>">
-					<a href="javascript:void(0);">
+					<a href="<?php echo base_url('admin/dashboard'); ?>">
 						<i class="fa fa-dashboard"></i><span>Dashboard</span>
 						<?php /*<span class="pull-right-container">
 							<i class="fa fa-angle-left pull-right"></i>

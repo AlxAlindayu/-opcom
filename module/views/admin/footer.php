@@ -15,6 +15,7 @@
 <?php echo js_tag('js/app.min.js');?>
 <?php echo js_tag('js/dashboard.js');?>
 <?php echo js_tag('js/deym.js');?>
+<?php echo js_tag('js/select2.full.min.js');?>
 <?php echo js_tag('js/fastclick.min.js');?>
 <?php echo js_tag('js/moment.min.js');?>
 <?php echo js_tag('js/daterangepicker.js');?>
