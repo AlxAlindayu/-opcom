@@ -24,8 +24,9 @@ class Registration extends CI_Controller
 
 		if($this->input->get('add') == 'rg' || $this->input->get('add') == 'aspirant') 
 		{
+			$data['page'] = $this->input->get('add');
 			$data['submenu'] = 'Add Information';
-			$data['page'] = 'rg';
+			
 			if($_POST) 
 			{
 				$i = 0;
@@ -206,7 +207,7 @@ class Registration extends CI_Controller
 		}
 		elseif($this->input->get('add') == 'user') {
 			$data['submenu'] = 'Add User';
-			$data['page'] = 'rg';
+			$data['page'] = 'account';
 
 			if($_POST) {
 				$error = 0;
@@ -255,7 +256,7 @@ class Registration extends CI_Controller
 
 						$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> User account has been created successfully.</p>');
 						$logs_message = 'User created unique_id : '.$this->input->post('unique_id').' Vest No. : '.$get['vest_no'].' with status :'.$this->input->post('status').' ';
-						logs_record($this->session->userdata('hashcrash',$logs_message,date("Y-m-d H:i:s"));
+						logs_record($this->session->userdata('hashcrash'),$logs_message,date("Y-m-d H:i:s"));
 						redirect('admin/registration?add=user');
 
 					}

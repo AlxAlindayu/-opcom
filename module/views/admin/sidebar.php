@@ -44,6 +44,7 @@
 						</span>
 					</a>
 					<ul class="treeview-menu">
+						
 						<li class="<?php echo (isset($page) ? $page == 'list' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration'); ?>"><i class="fa fa-list" aria-hidden="true"></i> List</a></li>
 						<li class="<?php echo (isset($page) ? $page == 'aspirant' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration?add=aspirant'); ?>"><i class="fa fa-users" aria-hidden="true"></i> Aspirants</a></li>
 						<li class="<?php echo (isset($page) ? $page == 'rg' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration?add=rg'); ?>"><i class="fa fa-user" aria-hidden="true"></i> RG's</a></li>

@@ -115,13 +115,16 @@
 									<tbody>
 										<?php 
 
-											$uq = QModel::sf("user");
+											$uq = QModel::query("SELECT * FROM user WHERE usertype >= '1'");
 											$cq = QModel::c($uq);
 
 											if( ! $cq):
 										?>
 										<tr>
+											<td></td>
 											<td>No Records Found !</td>
+											<td></td>
+											<td></td>
 										</tr>
 									<?php else: ?>
 										<?php
@@ -162,14 +165,15 @@
 											<td><?php echo $vest_no; ?></td>
 											<td><?php echo $fullname; ?></td>
 											<td><?php echo $usertype.' / '.$ug['status']; ?></td>
-											<?php #if($this->session->userdata('count') == 1): ?>
+											<?php if($this->session->userdata('count') <= 1): ?>
 												<td>
 													<a href="<?php echo base_url('admin/registration?modify=yes&who='.$unique_id); ?>"><i class="fa fa-pencil-square fa-lg" aria-hidden="true" ></i> Edit</a>
 													| 
 													<a href="<?php echo base_url('admin/registration?modify=yes&who='.$unique_id); ?>"><i class="fa fa-ban fa-lg" aria-hidden="true" ></i> Delete</a>
 												</td>
-
-											<?php #endif; ?>
+											<?php else: ?>
+												<td></td>
+											<?php endif; ?>
 										</tr>
 										<?php endforeach; endif; ?>
 									</tbody>

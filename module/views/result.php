@@ -8,17 +8,38 @@
 					<th>Batch</th>
 					<th>Firstname</th>
 					<th>Lastname</th>
-					<th>MC Type</th>
+					<?php /*<th>MC Type</th>*/ ?>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>3618</td>
-					<td>B23 Magbangis</td>
-					<td>Alex</td>
-					<td>Alindayu</td>
-					<td>SYM SBSR 2016</td>
-				</tr>
+				<?php if($query): ?>
+					<?php 
+
+
+					//echo QModel::c($query);
+					//die();
+						if( ! QModel::c($query)):
+					?>
+					<tr>
+						<td class="text-center" colspan="8">No Records Found</td>
+					</tr>
+					<?php else: ?>
+						<?php 
+								foreach (QModel::g($query, TRUE) as $get): 
+									$firstname = $get['firstname'];
+									$lastname = $get['lastname'];
+									$batch = $get['batch'];
+									$vest_no = $get['vest_no'];
+						?>
+					<tr>
+						<td><?php echo $vest_no; ?></td>
+						<td><?php echo $batch; ?></td>
+						<td><?php echo $firstname; ?></td>
+						<td><?php echo $lastname; ?></td>
+						<?php /*<td>SYM SBSR 2016</td>*/ ?>
+					</tr>
+					<?php endforeach; endif; ?>
+				<?php endif ?>
 			</tbody>
 		</table>
 	</div>

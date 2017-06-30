@@ -21,6 +21,8 @@
 	<?php echo link_tag('themes/default/images/favicon.ico', 'shortcut icon', 'image/x-icon'); ?>
 	<?php echo link_tag('themes/default/images/favicon.ico', 'icon', 'image/x-icon'); ?>
 	<?php echo link_tag('themes/default/css/layout.css'); ?>
+	<?php echo link_tag('themes/default/css/pace-flash.css'); ?>
+	<?php echo link_tag('themes/default/css/polaris.css'); ?>
 	<?php echo link_tag('themes/default/css/bootstrap.css'); ?>
 	
 	<?php echo link_tag('themes/default/css/hover.css'); ?>
@@ -79,12 +81,21 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="col-md-offset-3">
-				<div class="col-md-8">
-					<form class="rg-form" role="search">
+				<div class="col-md-9">
+					<form class="rg-form" role="search" method="POST">
 						<div class="input-group add-on">
-							<input type="text" name="search" placeholder="Vest #" class="form-control rg-search-bar">
+							<input type="text" name="search" placeholder="Vest #" class="form-control rg-search-bar" value="<?php echo isset($search) ? $search : ''; ?>">
 							<div class="input-group-btn">
 								<button class="btn btn-default hvr-fade rg-hvr" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							</div>
+						</div>
+						<div class="text-center" style="margin-top:10px;">
+							<div class="row">
+								<label class="radio-inline"><input type="radio" name="searches" value="1" class="iradio_polaris" <?php echo (isset($searches) ? $searches == '1' : '') ? 'checked' : ''; ?> checked>Vest #</label>
+								<?php /*<label class="radio-inline"><input type="radio" name="searches" value="5" class="iradio_polaris" <?php (isset($searches) ? $searches == '5' : '') ? 'checked' : ''; ?>>Vest Name</label>*/ ?>
+								<?php /*<label class="radio-inline"><input type="radio" name="searches" value="2" class="iradio_polaris" <?php (isset($searches) ? $searches == '2' : '') ? 'checked' : ''; ?>>Plate #</label>*/ ?>
+								<label class="radio-inline"><input type="radio" name="searches" value="3" class="iradio_polaris" <?php echo (isset($searches) ? $searches == '3' : '') ? 'checked' : ''; ?>>Lastname</label>
+								<label class="radio-inline"><input type="radio" name="searches" value="4" class="iradio_polaris" <?php echo (isset($searches) ? $searches == '4' : '') ? 'checked' : ''; ?>>Firstname</label>
 							</div>
 						</div>
 					</form>
