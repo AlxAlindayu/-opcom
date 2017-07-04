@@ -15,13 +15,15 @@ class Registration extends CI_Controller
 	public function index()
 	{
 		
-
 		$data["title"] = "Welcome to RG Admin - Login ";
 		$data['description'] = 'Welcome to RG Admin !';
 		$data['author'] = "B23 RG 3618";
 		$data['folder'] = $this->folder;	
 		$data['menu'] = 'registration';
 
+		#$admin = new Admin();
+		#$data['username'] = $admin->details()[1].', '.$admin->details()[0].' - '.$admin->details()[2];
+		$data['username'] = $this->details()[1].', '.$this->details()[0].' - '.$this->details()[2];
 		if($this->input->get('add') == 'rg' || $this->input->get('add') == 'aspirant') 
 		{
 			$data['page'] = $this->input->get('add');
@@ -236,6 +238,12 @@ class Registration extends CI_Controller
 					$error++;
 				}
 
+				$iq = QModel::sfwa('information','unique_id',$this->input->post('user'));
+				if(QModel::c($iq)) {
+					$data['user_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> The information of the user are not registered.</div>';
+					$error++;
+				}
+
 				if( ! $error) {
 					$dq = QModel::sfwa('information',array('usertype','unique_id'),array('rg',$this->input->post('user')));
 					$cq = QModel::c($dq);
@@ -274,14 +282,133 @@ class Registration extends CI_Controller
 
 			$this->load->view($this->folder.'user_registration',$data);
 		}
-		else
+		elseif($this->input->get('controller') == 'user' && $this->input->get('f') == 'modify' && $this->input->get('who')) {
+
+			$query = QModel::sfwa('user','unique_id',$this->input->get('who'));
+			if( ! QModel::c($query)){
+				show_404();
+			}
+			else{
+				$var = array('user','usertype','userstatus');
+				$get = QModel::g($query);
+				foreach ($var as $f) {
+					
+					if($f == 'user'){
+						$data[$f] = $get['unique_id'];
+					}
+					elseif($f == 'userstatus') {
+						$data[$f] = $get['status'];
+					}
+					else{
+						$data[$f] = $get[$f];
+					}
+					
+				}
+			}
+			$data['moded'] = 'yes';
+			$data['submenu'] = 'Add User';
+			$data['page'] = 'account';
+
+			if($_POST) {
+
+				$error = 0;
+				$i = 0;
+				$var = array('password','vpassword','usertype','userstatus');
+				$var_name = array('Password','Verify Password','User Type','User Status');
+				$var_req = array(0,0,1,1);
+
+				foreach ($var as $a) {
+					$data[$a] = $this->input->post($a);
+					if( ! strlen($this->input->post($a)) && $var_req[$i]) {
+						$data[$a.'_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> Please enter '.$array[$i].'.</div>';
+						$error++;
+					}
+					$i++;
+				}
+
+				if($this->input->post('password')){
+					if($this->input->post('password') != $this->input->post('vpassword')){
+						$data['password_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> Please verify your password.</div>';
+						$error++;
+					}else{
+						$update['password'] = $this->input->post('password');
+					}
+
+				}
+
+
+
+				if( ! $error) {
+
+					$update = array(
+						'usertype' => $this->input->post('usertype'),
+						'status' => $this->input->post('userstatus'),
+						
+					);
+					$this->db->where('user_id',$get['user_id']);
+					$this->db->update('user',$update);
+
+					$logs_message = 
+						'User modify unique_id : '.$this->input->post('who').' <br />
+						 Status. : '.$this->input->post('userstatus').' <br />
+						 with usertype :'.$this->input->post('usertype').' 
+						 ';
+					logs_record($this->session->userdata('hashcrash'),$logs_message,date("Y-m-d H:i:s"));
+
+					$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> User account has been modify successfully.</p>');
+				
+					redirect('admin/registration?controller=user&f=modify&who='.$this->input->get("who"));
+				}
+			}
+
+			$data['query'] = $queryz = QModel::sfwa('information','usertype','rg');
+			$data['cquery'] = QModel::c($queryz);
+
+			$this->load->view($this->folder.'user_registration',$data);
+
+
+		}
+		elseif($this->input->get('controller') == 'registration/list')
 		{
 			$data['page'] = 'list';
+
 			$this->load->view($this->folder.'registration',$data);
+
 		}
-
-
+		else
+		{
+			//$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> User account has been modify successfully.</p>');
+			//$success = $this->session->flashdata('success');
+			//print_r($this->session->all_userdata());
+			show_404();
+		}
 		
+	}
+
+	public function details($unique_id=NULL)
+	{
+
+		if( ! $this->session->userdata('is_login')) 
+			redirect('admin/login');
+		
+
+		if($unique_id == NULL){
+			$params = $this->session->userdata('hashcrash');
+		}
+		else{
+			$params = $unique_id;
+		}
+		$query= QModel::sfwa('information','unique_id',$params);
+		if(QModel::c($query)) {
+			$get = QModel::g($query);
+
+			$firstname = $get['firstname'];
+			$lastname = $get['lastname'];
+			$vest_no = $get['vest_no'];
+			$details = array($firstname,$lastname,$vest_no);
+
+			return $details;
+		}
 	}
 
 

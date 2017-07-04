@@ -14,6 +14,7 @@
 					<form  method="POST">
 						<section class="col-lg-12">
 							<?php echo $this->session->flashdata('success'); ?>
+							
 						</section>
 						<section class="col-lg-6 ">
 							<div class="box box-primary">
@@ -30,7 +31,7 @@
 												if($cquery):
 
 											?>
-												<select class="form-control rg-info" name="user" <?php if($cquery){ echo 'multiple="multiple"';} ?>>
+												<select class="form-control rg-info" name="user" <?php if($cquery){ echo 'multiple="multiple"';} ?> <?php echo isset($moded) ? 'disabled' : ''; ?>>
 													
 													<?php 
 														foreach (QModel::g($query, TRUE) as $get):
@@ -42,7 +43,7 @@
 															$aspirant = $get['aspirant'];
 
 													?>
-															<option <?php echo (isset($user) ? $user == $unique_id : '') ? 'selected' : ''; ?> value="<?php echo $unique_id; ?>"><?php echo $lastname.', '.$firstname.' - '.$vest_no.' - '.$aspirant.' - '.$batch; ?></option>
+															<option <?php echo (isset($user) ? $user == $unique_id : '') ? 'selected' : ''; ?> value="<?php echo $unique_id; ?>"><?php echo $lastname.', '.$firstname.' - '.$vest_no.' - '.$aspirant.' - '.$batch;?></option>
 													<?php endforeach; ?>
 												</select>
 											<?php else: ?>
@@ -66,11 +67,12 @@
 										<div class="form-group <?php echo isset($usertype_response) ? 'has-error' : ''; ?>">
 											<label for="batch">User Role</label>
 											<select class="form-control" name="usertype">
-												<?php if ($this->session->userdata('count') == 0): ?>
-													<option <?php echo (isset($usertype) ? $usertype == '0' : '') ? 'selected' : ''; ?> value="0">Super Admin</option>
-												<?php elseif($this->session->userdata('count') <= 0): ?>
-													<option <?php echo (isset($usertype) ? $usertype == '1' : '') ? 'selected' : ''; ?> value="1">Admin</option>
-													<option <?php echo (isset($usertype) ? $usertype == '2' : '') ? 'selected' : ''; ?> value="2">Moderator</option>
+												<?php if ($this->session->userdata('count') <= 0): ?>
+													<?php if($this->session->userdata('count') == 0): ?>
+														<option <?php echo (isset($usertype) ? $usertype == '0' : '') ? 'selected' : ''; ?> value="0">Super Admin</option>
+														<option <?php echo (isset($usertype) ? $usertype == '1' : '') ? 'selected' : ''; ?> value="1">Admin</option>
+														<option <?php echo (isset($usertype) ? $usertype == '2' : '') ? 'selected' : ''; ?> value="2">Moderator</option>
+													<?php endif; ?>
 												<?php endif ?>
 												<option <?php echo (isset($usertype) ? $usertype == '3' : '') ? 'selected' : ''; ?> value="3">Rg's</option>
 											</select>
@@ -81,7 +83,7 @@
 											<select class="form-control" name="userstatus">
 												<option <?php echo (isset($userstatus) ? $userstatus == 'Active' : '') ? 'selected' : ''; ?> value="Active">Active</option>
 												<option <?php echo (isset($userstatus) ? $userstatus == 'Pending' : '') ? 'selected' : ''; ?> value="Pending">Pending</option>
-												<option <?php echo (isset($userstatus) ? $userstatus == 'Ban' : '') ? 'selected' : ''; ?> value="2">Ban</option>
+												<option <?php echo (isset($userstatus) ? $userstatus == 'Ban' : '') ? 'selected' : ''; ?> value="Ban">Ban</option>
 											</select>
 											<span><?php echo isset($userstatus_response) ? $userstatus_response : ''; ?></span>
 										</div>
@@ -115,7 +117,7 @@
 									<tbody>
 										<?php 
 
-											$uq = QModel::query("SELECT * FROM user WHERE usertype >= '1'");
+											$uq = QModel::query("SELECT * FROM user WHERE usertype <= '3'");
 											$cq = QModel::c($uq);
 
 											if( ! $cq):
@@ -167,7 +169,7 @@
 											<td><?php echo $usertype.' / '.$ug['status']; ?></td>
 											<?php if($this->session->userdata('count') <= 1): ?>
 												<td>
-													<a href="<?php echo base_url('admin/registration?modify=yes&who='.$unique_id); ?>"><i class="fa fa-pencil-square fa-lg" aria-hidden="true" ></i> Edit</a>
+													<a href="<?php echo base_url('admin/registration?controller=user&f=modify&who='.$unique_id); ?>"><i class="fa fa-pencil-square fa-lg" aria-hidden="true" ></i> Edit</a>
 													| 
 													<a href="<?php echo base_url('admin/registration?modify=yes&who='.$unique_id); ?>"><i class="fa fa-ban fa-lg" aria-hidden="true" ></i> Delete</a>
 												</td>
@@ -193,6 +195,7 @@
 		theme: "classic",
 		maximumSelectionLength: 1
 	});
+	
 <?php endif; ?>
 $('#rgtable').DataTable({
 	"paging": true,

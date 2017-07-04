@@ -12,8 +12,8 @@
 <?php echo js_tag('js/jquery-ui.min.js');?>
 <?php echo js_tag('js/bootstrap3-wysihtml5.all.min.js');?>
 <?php echo js_tag('js/jquery.slimscroll.min.js');?>
-<?php echo js_tag('js/app.min.js');?>
 <?php echo js_tag('js/dashboard.js');?>
+<?php echo js_tag('js/rg-admin.js');?>
 <?php echo js_tag('js/deym.js');?>
 <?php echo js_tag('js/select2.full.min.js');?>
 <?php echo js_tag('js/fastclick.min.js');?>

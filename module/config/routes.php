@@ -43,5 +43,6 @@ $route['404_override'] = 'site';
 $route['404'] = 'site';
 $route['logout'] = 'admin/logout';
 $route['admin/registration'] = 'registration';
+$route['admin/message'] = 'message';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

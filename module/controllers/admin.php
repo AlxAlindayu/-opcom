@@ -6,23 +6,28 @@ class Admin extends CI_Controller
 
 	public function __construct()
 	{
-
 		parent::__construct();
 	}
 	
 	public function index()
 	{
 		if( ! $this->session->userdata('is_login')) 
-			show_404();
+			redirect('admin/login');
 		else
 			redirect('admin/dashboard');
 	}
 	public function login()
 	{
+		if($this->session->userdata('is_login')) 
+			redirect('admin/dashboard');
+		
 		$data["title"] = "Welcome to RG Admin - Login ";
 		$data['description'] = 'Welcome to RG Admin !';
 		$data['author'] = "B23 RG 3618";
 		$data['folder'] = $this->folder.'login/';
+
+		
+			
 
 		if($_POST)
 		{
@@ -109,14 +114,22 @@ class Admin extends CI_Controller
 		);			
 
 		$this->session->unset_userdata($onlinenetwork);
-		$this->session->sess_destroy();
+		$this->session->destroy();
 		redirect('');
 	}
 	//hashcrash
-	private function details($unique_id=NULL)
+	public function details($unique_id=NULL)
 	{
+
+		if( ! $this->session->userdata('is_login')) 
+			redirect('admin/login');
+		
+
 		if($unique_id == NULL){
 			$params = $this->session->userdata('hashcrash');
+		}
+		else{
+			$params = $unique_id;
 		}
 		$query= QModel::sfwa('information','unique_id',$params);
 		if(QModel::c($query)) {
@@ -132,6 +145,10 @@ class Admin extends CI_Controller
 	}
 	public function dashboard()
 	{
+		if( ! $this->session->userdata('is_login')) 
+			redirect('admin/login');
+		
+
 		$data["title"] = "Welcome to RG Admin - Login ";
 		$data['description'] = 'Welcome to RG Admin !';
 		$data['author'] = "B23 RG 3618";

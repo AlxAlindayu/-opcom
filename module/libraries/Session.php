@@ -138,7 +138,11 @@ class CI_Session {
     */
 	function _sess_run()
 	{
-		session_start();
+		if (isset($_SESSION)) {
+			
+		}else{
+			session_start();
+		}
 
 		$session_id_ttl = $this->object->config->item('sess_expiration');
 

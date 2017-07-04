@@ -45,7 +45,7 @@
 					</a>
 					<ul class="treeview-menu">
 						
-						<li class="<?php echo (isset($page) ? $page == 'list' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration'); ?>"><i class="fa fa-list" aria-hidden="true"></i> List</a></li>
+						<li class="<?php echo (isset($page) ? $page == 'list' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration?controller=registration/list'); ?>"><i class="fa fa-list" aria-hidden="true"></i> List</a></li>
 						<li class="<?php echo (isset($page) ? $page == 'aspirant' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration?add=aspirant'); ?>"><i class="fa fa-users" aria-hidden="true"></i> Aspirants</a></li>
 						<li class="<?php echo (isset($page) ? $page == 'rg' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration?add=rg'); ?>"><i class="fa fa-user" aria-hidden="true"></i> RG's</a></li>
 						<li class="<?php echo (isset($page) ? $page == 'account' : '') ? 'active' : ''; ?>"><a href="<?php echo base_url('admin/registration?add=user'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> Account</a></li>
@@ -63,9 +63,9 @@
 						
 					</ul>
 				</li>
-				<li class="<?php echo (isset($menu) ? $menu == 'mailbox' : '') ? 'active' : ''; ?>">
+				<li class="<?php echo (isset($menu) ? $menu == 'messages' : '') ? 'active' : ''; ?>">
 					<a href="pages/mailbox/mailbox.html">
-						<i class="fa fa-envelope"></i><span>Mailbox</span>
+						<i class="fa fa-envelope"></i><span>Messages</span>
 						<?php /*<span class="pull-right-container">
 							<small class="label pull-right bg-yellow">12</small>
 							<small class="label pull-right bg-green">16</small>
@@ -75,9 +75,16 @@
 				</li>
 				<li class="<?php echo (isset($menu) ? $menu == 'documentation' : '') ? 'active' : ''; ?>"><a href="documentation/index.html"><i class="fa fa-book"></i><span>Documentation</span></a></li>
 				<li class="header">LABELS</li>
+				<li><a href="javascript:void(0);"><i class="fa fa-circle-o text-green"></i><span>Online</span></a></li>
 				<li><a href="javascript:void(0);"><i class="fa fa-circle-o text-red"></i><span>Important</span></a></li>
 				<li><a href="javascript:void(0);"><i class="fa fa-circle-o text-yellow"></i><span>Warning</span></a></li>
 				<li><a href="javascript:void(0);"><i class="fa fa-circle-o text-aqua"></i><span>Information</span></a></li>
+				
+				<li><a href="javascript:void(0);">&nbsp;</a></li>
+				<li><a href="javascript:void(0);">&nbsp;</a></li>
+				<li><a href="javascript:void(0);">&nbsp;</a></li>
+				<li><a href="javascript:void(0);">&nbsp;</a></li>
+				<li><a href="javascript:void(0);">&nbsp;</a></li>
 			</ul>
 	</section>
 	<!-- /.sidebar -->

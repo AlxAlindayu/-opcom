@@ -20,17 +20,18 @@
 	<?php echo meta('robots', 'noodp,noydir'); ?>
 	<?php echo link_tag('themes/default/images/favicon.ico', 'shortcut icon', 'image/x-icon'); ?>
 	<?php echo link_tag('themes/default/images/favicon.ico', 'icon', 'image/x-icon'); ?>
+	<?php echo link_tag('themes/default/css/bootstrap.min.css'); ?>
 	<?php echo link_tag('themes/default/css/admin.css'); ?>
 	<?php echo link_tag('themes/default/css/bootstrap3-wysihtml5.min.css'); ?>
 	<?php echo link_tag('themes/default/css/_all-skins.min.css'); ?>
-	<?php echo link_tag('themes/default/css/admin-rg.min.css'); ?>
+	
 	<?php echo link_tag('themes/default/css/ionicons.min.css'); ?>
-	<?php echo link_tag('themes/default/css/bootstrap.min.css'); ?>
+	
 	<?php echo link_tag('themes/default/css/hover.css'); ?>
 	<?php echo link_tag('themes/default/css/select2.min.css'); ?>
 	<?php echo link_tag('themes/default/css/daterangepicker.css'); ?>
-	
 	<?php echo link_tag('themes/default/css/font-awesome.min.css'); ?>
+	<?php echo link_tag('themes/default/css/admin-rg.css'); ?>
 	<?php
 		if ( ! empty($css))
 		{
@@ -71,7 +72,7 @@
 								<span class="label label-success">4</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="header">You have 4 messages</li>
+								<li class="header">You have 4 messages <span class="pull-right"><a href="<?php echo base_url('admin/message?c=message&f=new'); ?>">New message</a></span></li>
 								<li>
  									<!-- inner menu: contains the actual data -->
 	 								<ul class="menu">
