@@ -11,7 +11,8 @@ June 29, 2017 (Updates 1.4) - Alex Alindayu <br />
 
 
 
-July 4, 2017
-*Form Design Fixed !
-*Message System(On Development)
-
+July 4, 2017 (Updates 1.5) - Alex Alindayu <br />
+*Form Design Fixed !<br />
+*Message System(On Development)<br />
+*Modifying User Done<br />
+*Session Bug Fixed<br />
