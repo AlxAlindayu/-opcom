@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2017 at 11:13 AM
+-- Generation Time: Jul 05, 2017 at 01:25 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.15
 
@@ -42,14 +42,15 @@ CREATE TABLE IF NOT EXISTS `emergency_info` (
   `contact_address` varchar(255) DEFAULT NULL,
   `relation` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`emergency_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `emergency_info`
 --
 
 INSERT INTO `emergency_info` (`emergency_id`, `unique_id`, `contact_name`, `contact_number`, `contact_address`, `relation`) VALUES
-(1, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Marissa Alindayu', '09233338943', '#9 mangga rd z-1 north signal village taguig city', 'Mother');
+(1, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'qweqweqwe', 's545645', 'qweqweasdad', 'asdzczxc'),
+(2, '412547c17b21fcb80df556f92f2b32a6673778b95bee814c7240d86ddf2fda4e6c2465381f36a2900ae3327157fe4c66f3af29ae4cfff1289ad953f64fa9efbc', 'qweqweqwe', 's545645', 'qweqweasdad', 'asdzczxc');
 
 -- --------------------------------------------------------
 
@@ -90,14 +91,15 @@ CREATE TABLE IF NOT EXISTS `information` (
   `usertype` enum('aspirant','rg','ban') NOT NULL DEFAULT 'aspirant',
   PRIMARY KEY (`information_id`),
   UNIQUE KEY `vest_no` (`vest_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `information`
 --
 
 INSERT INTO `information` (`information_id`, `unique_id`, `vest_no`, `aspirant`, `batch`, `firstname`, `lastname`, `middlename`, `birthday`, `bloodtype`, `st_address`, `city`, `sector`, `contact_numberinf`, `date_added`, `usertype`) VALUES
-(2, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', '3618', '394', 23, 'Alex', 'Alindayu', '', '1995-02-11', 'A-positive', '#9 mangga rd z-1 north signal village', 'taguig', 3, '09396154921', '2017-06-28', 'rg');
+(2, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', '3618', '394', 23, 'Alex', 'Alindayu', '', '1995-02-11', 'A-positive', '#9 mangga rd z-1 north signal village', 'taguig', 3, '09396154921', '2017-06-28', 'rg'),
+(3, '412547c17b21fcb80df556f92f2b32a6673778b95bee814c7240d86ddf2fda4e6c2465381f36a2900ae3327157fe4c66f3af29ae4cfff1289ad953f64fa9efbc', '1111', NULL, 11, 'Testing', 'Testing', '', '2017-07-29', 'NA', '0000000000', 'Tarzana', 8, '00000000000', '2017-07-04', 'rg');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `message` text NOT NULL,
   `date_created` datetime NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
 -- Dumping data for table `logs`
@@ -120,7 +122,85 @@ CREATE TABLE IF NOT EXISTS `logs` (
 INSERT INTO `logs` (`logs_id`, `unique_id`, `message`, `date_created`) VALUES
 (1, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'The User 6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9 Is logout', '2017-06-29 17:00:13'),
 (2, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-06-29 17:10:15'),
-(3, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is logout', '2017-06-29 17:12:59');
+(3, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is logout', '2017-06-29 17:12:59'),
+(4, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-06-30 12:22:07'),
+(5, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-06-30 16:11:43'),
+(6, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 11:15:47'),
+(7, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 15:39:29'),
+(8, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 16:45:47'),
+(9, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 16:51:13'),
+(10, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 16:56:27'),
+(11, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:01:55'),
+(12, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:07:35'),
+(13, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:14:11'),
+(14, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:19:18'),
+(15, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:25:07'),
+(16, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:30:14'),
+(17, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:35:33'),
+(18, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 17:36:22'),
+(19, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:19:28'),
+(20, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:20:31'),
+(21, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:26:26'),
+(22, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:26:45'),
+(23, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:26:48'),
+(24, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:29:53'),
+(25, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:30:02'),
+(26, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Register Vest No. : 1111 Firstname : Testing Lastname : Testing', '2017-07-04 18:31:27'),
+(27, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:33:44'),
+(28, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:34:07'),
+(29, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Modify Vest No. : 1111 With Unique ID :412547c17b21fcb80df556f92f2b32a6673778b95bee814c7240d86ddf2fda4e6c2465381f36a2900ae3327157fe4c66f3af29ae4cfff1289ad953f64fa9efbc', '2017-07-04 18:34:36'),
+(30, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Modify Vest No. : 1111 With Unique ID :412547c17b21fcb80df556f92f2b32a6673778b95bee814c7240d86ddf2fda4e6c2465381f36a2900ae3327157fe4c66f3af29ae4cfff1289ad953f64fa9efbc', '2017-07-04 18:35:29'),
+(31, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:36:47'),
+(32, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:37:01'),
+(33, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:41:21'),
+(34, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:46:50'),
+(35, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:47:05'),
+(36, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:47:32'),
+(37, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Ban <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:48:08'),
+(38, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:49:09'),
+(39, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:50:13'),
+(40, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Ban <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:51:16'),
+(41, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:51:38'),
+(42, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:52:45'),
+(43, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:53:03'),
+(44, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 18:53:18'),
+(45, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 18:53:23'),
+(46, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 18:55:03'),
+(47, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is logout', '2017-07-04 19:00:40'),
+(48, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 19:01:46'),
+(49, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is logout', '2017-07-04 19:02:09'),
+(50, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-04 19:02:52'),
+(51, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 19:03:00'),
+(52, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 19:03:03'),
+(53, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Pending <br />\r\n            with usertype :0 \r\n             ', '2017-07-04 19:04:08'),
+(54, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'User modify unique_id :  <br />\r\n            Status. : Active <br />\r\n             with usertype :0 \r\n             ', '2017-07-04 19:04:15'),
+(55, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-05 17:42:12'),
+(56, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Message Sent to  : 6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9 ', '2017-07-05 18:28:32'),
+(57, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Is login', '2017-07-05 18:44:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE IF NOT EXISTS `message` (
+  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rgfrom` varchar(255) NOT NULL,
+  `rgto` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `date_sent` datetime NOT NULL,
+  `is_read` enum('0','1') DEFAULT '0',
+  `is_delete` enum('0','1') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `rgfrom`, `rgto`, `message`, `date_sent`, `is_read`, `is_delete`) VALUES
+(1, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', 'Alex Hello World', '2017-07-05 18:28:32', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -198,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`, `unique_id`, `username`, `password`, `forgot_password`, `usertype`, `status`, `is_login`, `dt_login`, `date_registered`) VALUES
-(1, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', '3618', '48fe1e3200f132e00c2c41f87c921b33e733eab5789beed0242b2769eb2d2d1000c42ba001c8270c445074da0aeef6c200da30037896aaaa4017fc23cf831170', NULL, '0', 'Active', 'no', '1498727579', '2017-06-29 14:04:40');
+(1, '6683e1c81c6e3061083e766cea35886824f26c6ca8c38c53bdad6877f0989675be584bb48cfb4ac2944dc247f398e3d27be2b29700aabff94d1f4e68c4361ef9', '3618', '48fe1e3200f132e00c2c41f87c921b33e733eab5789beed0242b2769eb2d2d1000c42ba001c8270c445074da0aeef6c200da30037896aaaa4017fc23cf831170', NULL, '0', 'Active', 'yes', '1499251458', '2017-06-29 14:04:40');
 
 -- --------------------------------------------------------
 
@@ -215,11 +295,3 @@ CREATE TABLE IF NOT EXISTS `userdata_session` (
   PRIMARY KEY (`session_id`),
   KEY `last_activity_idx` (`last_activity`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userdata_session`
---
-
-INSERT INTO `userdata_session` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('819080b13d00a4972027ff1490347e26', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 1498727579, ''),
-('b2952d1fabe7283e57f94b6b68fbe99d', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 1498727580, '');
