@@ -72,74 +72,67 @@
 								<span class="label label-success">4</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="header">You have 4 messages <span class="pull-right"><a href="<?php echo base_url('admin/message?c=message&f=new'); ?>">New message</a></span></li>
+
+								<?php
+								/*********************MESSAGE FUNCTION******************/
+									$mq = QModel::sfwa('message',array('rgto','is_delete'),array($this->session->userdata('hashcrash'),'0'),'date_sent ASC','8,0');
+									$mc = QModel::c($mq);
+
+									if( ! $mc):
+								?>
+								<li>
+									<div class="alert alert-info alert-dismissible">
+										Opps no message found
+									</div>
+									
+								</li>
+								<?php else: ?>
+								<li class="header">You have (<?php echo $mc; ?>) messages <span class="pull-right"><a href="<?php echo base_url('admin/message?c=message&f=new'); ?>">New message</a></span></li>
+
 								<li>
  									<!-- inner menu: contains the actual data -->
 	 								<ul class="menu">
-										<li><!-- start message -->
-											<a href="javascript:void(0);">
-	 											<div class="pull-left">
-													<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-	 											</div>
-	 											<h4>
-													RG Community - Admin(#3618)
-													<small><i class="fa fa-clock-o"></i> 5 mins</small>
-	 											</h4>
-	 											<p>Welcome to RG Community Dashboard</p>
-											</a>
-										</li>
-										<!-- end message -->
-										<li>
-											<a href="javascript:void(0);">
- 												<div class="pull-left">
-													<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
- 												</div>
- 												<h4>
-													RG Design Team
-													<small><i class="fa fa-clock-o"></i> 2 hours</small>
- 												</h4>
- 												<p>Welcome to RG Community Dashboard</p>
-											</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">
-	 											<div class="pull-left">
-													<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
- 												</div>
- 												<h4>
-													Developers
-													<small><i class="fa fa-clock-o"></i> Today</small>
- 												</h4>
- 												<p>Welcome to RG Community Dashboard</p>
-											</a>
-										</li>
+										<?php
+											foreach (QModel::g($mq, TRUE) as $g):
+												$rgfrom = $g['rgfrom'];
+												$message = $g['message'];
+												$date_sent = $g['date_sent'];
+												$is_read = $g['is_read'];
+
+												$res = $this->wmodel->getInformation($rgfrom);
+			
+												$from = $res->firstname.', '.$res->lastname.' - '.$res->vest_no;
+
+												if (strlen($message) > 40) 
+												{
+													// truncate string
+													
+													// make sure it ends in a word so assassinate doesn't become ass...
+													$message_post = substr($website, 0, 40).'...'; 
+												}
+												else
+												{
+													$message_post = $message;
+												}
+										?>
 										<li>
 											<a href="javascript:void(0);">
 												<div class="pull-left">
-													<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+													<img src="<?php echo themes_url('images/profile/rgview.jpg'); ?>" class="img-circle" alt="User Image">
  												</div>
  												<h4>
-													Sales Department
-													<small><i class="fa fa-clock-o"></i> Yesterday</small>
+													<?php echo $from; ?>
+													<?php /*<small><i class="fa fa-clock-o"></i> 2 days</small>*/ ?>
  												</h4>
- 												<p>Welcome to RG Community Dashboard</p>
+												<p><?php echo $message_post; ?></p>
 											</a>
 										</li>
-										<li>
-											<a href="javascript:void(0);">
-												<div class="pull-left">
-													<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
- 												</div>
- 												<h4>
-													Reviewers
-													<small><i class="fa fa-clock-o"></i> 2 days</small>
- 												</h4>
-												<p>Welcome to RG Community Dashboard</p>
-											</a>
-										</li>
+									<?php endforeach; endif; ?>
 									</ul>
 								</li>
-								<li class="footer"><a href="javascript:void(0);">See All Messages</a></li>
+								<?php if($mc > 8): ?>
+									<li class="footer"><a href="javascript:void(0);">See All Messages</a></li>
+								<?php endif; ?>
 							</ul>
  						</li>
  						<!-- Notifications: style can be found in dropdown.less -->

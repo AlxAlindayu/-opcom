@@ -118,31 +118,7 @@ class Admin extends CI_Controller
 		redirect('');
 	}
 	//hashcrash
-	public function details($unique_id=NULL)
-	{
-
-		if( ! $this->session->userdata('is_login')) 
-			redirect('admin/login');
-		
-
-		if($unique_id == NULL){
-			$params = $this->session->userdata('hashcrash');
-		}
-		else{
-			$params = $unique_id;
-		}
-		$query= QModel::sfwa('information','unique_id',$params);
-		if(QModel::c($query)) {
-			$get = QModel::g($query);
-
-			$firstname = $get['firstname'];
-			$lastname = $get['lastname'];
-			$vest_no = $get['vest_no'];
-			$details = array($firstname,$lastname,$vest_no);
-
-			return $details;
-		}
-	}
+	
 	public function dashboard()
 	{
 		if( ! $this->session->userdata('is_login')) 
@@ -154,8 +130,9 @@ class Admin extends CI_Controller
 		$data['author'] = "B23 RG 3618";
 		$data['folder'] = $this->folder;
 		$data['menu'] = 'dashboard';
-
-		$data['username'] = $this->details()[1].', '.$this->details()[0].' - '.$this->details()[2];
+		$res = $this->wmodel->getInformation($this->session->userdata('hashcrash'));
+		
+		$data['username'] = $res->lastname.', '.$res->firstname.' - '.$res->vest_no;
 
 		$this->load->view($this->folder.'body',$data);
 	}

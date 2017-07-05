@@ -21,9 +21,11 @@ class Registration extends CI_Controller
 		$data['folder'] = $this->folder;	
 		$data['menu'] = 'registration';
 
-		#$admin = new Admin();
-		#$data['username'] = $admin->details()[1].', '.$admin->details()[0].' - '.$admin->details()[2];
-		$data['username'] = $this->details()[1].', '.$this->details()[0].' - '.$this->details()[2];
+		
+		$res = $this->wmodel->getInformation($this->session->userdata('hashcrash'));
+		
+		$data['username'] = $res->lastname.', '.$res->firstname.' - '.$res->vest_no;
+		
 		if($this->input->get('add') == 'rg' || $this->input->get('add') == 'aspirant') 
 		{
 			$data['page'] = $this->input->get('add');

@@ -32,8 +32,12 @@ class WModel extends CI_Model {
 		$this->db->where('inf.unique_id',$unique_id);
 		$this->db->trans_complete();
 		$query = $this->db->get();
+		$result = array();
+		if ($query->num_rows() > 0) {
+			$result = $query->row();
+		}
 
 		
-		return $query;
+		return $result;
 	}
 }

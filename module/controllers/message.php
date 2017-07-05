@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-include_once (dirname(__FILE__) . "/admin.php");
+
 class Message extends CI_Controller
 {
 	private $folder = 'admin/';
@@ -21,8 +21,10 @@ class Message extends CI_Controller
 		$data['folder'] = $this->folder;	
 		$data['menu'] = 'messages';
 
-		$admin = new Admin();
-		$data['username'] = $admin->details()[1].', '.$admin->details()[0].' - '.$admin->details()[2];
+		
+		$res = $this->wmodel->getInformation($this->session->userdata('hashcrash'));
+		
+		$data['username'] = $res->lastname.', '.$res->firstname.' - '.$res->vest_no;
 
 		if($this->input->get('c') == 'message' && $this->input->get('f') == 'new'){
 
@@ -30,9 +32,9 @@ class Message extends CI_Controller
 			$data['cquery'] = QModel::c($query);
 
 			if($_POST) {
-				$array = array();
-				$array_var = array();
-				$array_req = array();
+				$array = array('user','message');
+				$array_var = array('Recipient','Message');
+				$array_req = array(1,1);
 				$error = 0;
 				$i = 0;
 				
@@ -46,12 +48,36 @@ class Message extends CI_Controller
 					$i++;
 				}
 
+				$iq = QModel::sfwa('information','unique_id',$this->input->post('user'));
+				if( ! QModel::c($iq)) {
+					$data['user_response'] = '<div class="form-error"><i class="fa fa-info-circle"></i> The information of the user are not registered.</div>';
+					$error++;
+				}
+
 				if( ! $error) {
-					
+					$insert = array(
+						'rgto' => $this->input->post('user'),
+						'rgfrom' => $this->session->userdata('hashcrash'),
+						'message' => $this->input->post('message'),
+						'date_sent' => date("Y-m-d H:i:s")
+					);
+
+					$this->db->insert('message',$insert);
+
+					$this->session->set_flashdata('success','<p class="success"><i class="fa fa-info-circle"></i> Message Successfully Sent.</p>');
+					$logs_message = 'Message Sent to  : '.$this->input->post('user').' ';
+					logs_record($this->session->userdata('hashcrash'),$logs_message,date("Y-m-d H:i:s"));
+					redirect('admin/message?c=message&f=new');
 				}
 			}
 
 			$this->load->view($this->folder.'compose',$data);
+		}
+		elseif($this->input->get('controller') == 'message/mailbox') {
+			$data['menu'] = 'mailbox';
+			$data['page'] = 'messages';
+
+			$this->load->view($this->folder.'mailbox',$data);
 		}
 		else{
 

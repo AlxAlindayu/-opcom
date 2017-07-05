@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <aside class="main-sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
@@ -64,7 +65,7 @@
 					</ul>
 				</li>
 				<li class="<?php echo (isset($menu) ? $menu == 'messages' : '') ? 'active' : ''; ?>">
-					<a href="pages/mailbox/mailbox.html">
+					<a href="<?php echo base_url('admin/message?controller=message/mailbox'); ?>">
 						<i class="fa fa-envelope"></i><span>Messages</span>
 						<?php /*<span class="pull-right-container">
 							<small class="label pull-right bg-yellow">12</small>
