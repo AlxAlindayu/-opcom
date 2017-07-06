@@ -66,10 +66,15 @@
  				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
  						<!-- Messages: style can be found in dropdown.less-->
+ 						<?php  
+ 								/********UNREAD Message Count**********/
+ 								$qu = QModel::sfwa('message',array('rgto','is_read'),array($this->session->userdata('hashcrash'),'0'));
+								$quc = QModel::c($qu);
+						?>
  						<li class="dropdown messages-menu">
 							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 								<i class="fa fa-envelope-o"></i>
-								<span class="label label-success">4</span>
+								<span class="label label-success"><?php echo $quc; ?></span>
 							</a>
 							<ul class="dropdown-menu">
 
@@ -80,56 +85,64 @@
 
 									if( ! $mc):
 								?>
-								<li>
-									<div class="alert alert-info alert-dismissible">
-										Opps no message found
-									</div>
-									
-								</li>
-								<?php else: ?>
 								<li class="header">You have (<?php echo $mc; ?>) messages <span class="pull-right"><a href="<?php echo base_url('admin/message?c=message&f=new'); ?>">New message</a></span></li>
 
 								<li>
  									<!-- inner menu: contains the actual data -->
 	 								<ul class="menu">
-										<?php
-											foreach (QModel::g($mq, TRUE) as $g):
-												$rgfrom = $g['rgfrom'];
-												$message = $g['message'];
-												$date_sent = $g['date_sent'];
-												$is_read = $g['is_read'];
-
-												$res = $this->wmodel->getInformation($rgfrom);
-			
-												$from = $res->firstname.', '.$res->lastname.' - '.$res->vest_no;
-
-												if (strlen($message) > 40) 
-												{
-													// truncate string
-													
-													// make sure it ends in a word so assassinate doesn't become ass...
-													$message_post = substr($website, 0, 40).'...'; 
-												}
-												else
-												{
-													$message_post = $message;
-												}
-										?>
 										<li>
 											<a href="javascript:void(0);">
-												<div class="pull-left">
-													<img src="<?php echo themes_url('images/profile/rgview.jpg'); ?>" class="img-circle" alt="User Image">
- 												</div>
- 												<h4>
-													<?php echo $from; ?>
-													<?php /*<small><i class="fa fa-clock-o"></i> 2 days</small>*/ ?>
- 												</h4>
-												<p><?php echo $message_post; ?></p>
+												<p>No Message </p>
 											</a>
 										</li>
-									<?php endforeach; endif; ?>
+									
 									</ul>
 								</li>
+								<?php else: ?>
+									<li class="header">You have (<?php echo $mc; ?>) messages <span class="pull-right"><a href="<?php echo base_url('admin/message?c=message&f=new'); ?>">New message</a></span></li>
+
+									<li>
+	 									<!-- inner menu: contains the actual data -->
+		 								<ul class="menu">
+											<?php
+												foreach (QModel::g($mq, TRUE) as $g):
+													$rgfrom = $g['rgfrom'];
+													$message = $g['message'];
+													$date_sent = $g['date_sent'];
+													$is_read = $g['is_read'];
+
+													$res = $this->wmodel->getInformation($rgfrom);
+				
+													$from = $res->firstname.', '.$res->lastname.' - '.$res->vest_no;
+
+													if (strlen($message) > 40) 
+													{
+														// truncate string
+														
+														// make sure it ends in a word so assassinate doesn't become ass...
+														$message_post = substr($website, 0, 40).'...'; 
+													}
+													else
+													{
+														$message_post = $message;
+													}
+											?>
+											<li>
+												<a href="javascript:void(0);">
+													<div class="pull-left">
+														<img src="<?php echo themes_url('images/profile/rgview.jpg'); ?>" class="img-circle" alt="User Image">
+	 												</div>
+	 												<h4>
+														<?php echo $from; ?>
+														<?php /*<small><i class="fa fa-clock-o"></i> 2 days</small>*/ ?>
+	 												</h4>
+													<p><?php echo $message_post; ?></p>
+												</a>
+											</li>
+										
+										</ul>
+									</li>
+								<?php endforeach; endif; ?>
 								<?php if($mc > 8): ?>
 									<li class="footer"><a href="javascript:void(0);">See All Messages</a></li>
 								<?php endif; ?>

@@ -24,6 +24,17 @@ if ( ! function_exists('logs_record'))
 	}
 }
 /** 
+ * Custom Show_404
+ *
+ * @author 		Alex Alindayu
+ * @copyright 	Copyright (c)2011 - 2017 CreationEyed
+ * @since 		CE Version 3.1
+ *
+ * @version 	3.1
+ *
+ */
+
+/** 
  * Link to theme path
  *
  * @author		Enalds

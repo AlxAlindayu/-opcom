@@ -11,9 +11,9 @@
 	$qsc = QModel::c($qs);
 ?>
 <?php if($menu == 'mailbox'): ?>
-	<a href="javascript:void(0);" class="btn btn-primary btn-block margin-bottom">Compose</a>
-<?php elseif($menu == 'message'): ?>
-	<a href="javascript:void(0);" class="btn btn-primary btn-block margin-bottom">Back to Inbox</a>
+	<a href="<?php echo base_url('admin/message?c=message&f=new'); ?>" class="btn btn-primary btn-block margin-bottom">Compose</a>
+<?php elseif($menu == 'messages'): ?>
+	<a href="<?php echo base_url('admin/message?controller=message/mailbox'); ?>" class="btn btn-primary btn-block margin-bottom">Back to Inbox</a>
 <?php endif; ?>
 <div class="box box-solid">
 	<div class="box-header with-border">
@@ -24,9 +24,9 @@
 	</div>
 	<div class="box-body no-padding">
 		<ul class="nav nav-pills nav-stacked">
-			<li><a href="mailbox.html"><i class="fa fa-inbox"></i> Inbox<span class="label label-primary pull-right"><?php echo $qic; ?></span></a></li>
-			<li><a href="#"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right"><?php echo $qsc; ?></span></a></li>
-			<li><a href="#"><i class="fa fa-envelope-o"></i> Unread <span class="label label-danger pull-right"><?php echo $quc; ?></span></a></a></li>
+			<li><a href="<?php echo base_url('admin/message?controller=message/mailbox'); ?>"><i class="fa fa-inbox"></i> Inbox<span class="label label-primary pull-right"><?php echo $qic; ?></span></a></li>
+			<li><a href="<?php echo base_url('admin/message?controller=message/mailbox&f=sent'); ?>"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right"><?php echo $qsc; ?></span></a></li>
+			<li><a href="<?php echo base_url('admin/message?controller=message/mailbox&f=unread'); ?>"><i class="fa fa-envelope-o"></i> Unread <span class="label label-danger pull-right"><?php echo $quc; ?></span></a></a></li>
 		</ul>
 	</div>
 </div>

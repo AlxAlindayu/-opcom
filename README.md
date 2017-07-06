@@ -20,3 +20,8 @@ July 4, 2017 (Updates 1.5) - Alex Alindayu <br />
 July 5, 2017 (Updates 1.6) - Alex Alindayu <br />
 *Message System(On Development) - 60% almost done<br />
 *Updated Database
+
+July 6, 2017 (Updates 1.7) - Alex Alindayu <br />
+*Message System(On Development) - 90% almost done<br />
+*Message inbox using datatable
+*Reply function to be next 

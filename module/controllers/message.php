@@ -9,7 +9,7 @@ class Message extends CI_Controller
 		parent::__construct();
 
 		if( ! $this->session->userdata('is_login')) 
-			show_404();
+			show_404('no userdata');
 	}
 	
 	public function index()
@@ -76,6 +76,19 @@ class Message extends CI_Controller
 		elseif($this->input->get('controller') == 'message/mailbox') {
 			$data['menu'] = 'mailbox';
 			$data['page'] = 'messages';
+
+			if ($this->input->get('f')) {
+				if($this->input->get('f') == 'unread' || $this->input->get('f') == 'sent') {
+					if ($this->input->get('f') == 'unread') {
+						$data['unread'] = QModel::sfwa('message',array('rgto','is_read'),array($this->session->userdata('hashcrash'),'0'));
+					} else {
+						$data['sent'] = QModel::sfwa('message',array('rgfrom'),array($this->session->userdata('hashcrash')));
+					}
+				} else {
+					show_404('message/mailbox?f='.$this->input->get('f'));
+				}
+			}
+			
 
 			$this->load->view($this->folder.'mailbox',$data);
 		}
